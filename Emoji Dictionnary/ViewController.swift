@@ -11,13 +11,16 @@ import UIKit
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     @IBOutlet weak var tav: UITableView!
 
-    var emojisArray = ["🕶","🐛","🐭","👌🏽","🤖","👻","👽","🎧"];
+    var emojisArray: [Emoji] = [];
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         tav.dataSource = self;
         tav.delegate = self;
+        self.view.backgroundColor = UIColor.green
+        emojisArray = makeEmojiArray();
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -26,14 +29,39 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell();
-        cell.textLabel?.text = emojisArray[indexPath.row];
+        let emoji = emojisArray[indexPath.row];
+        cell.textLabel?.text = emoji.emojiString;
         return cell;
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     let defVC = segue.destination as!
+        SecondViewController;
+        defVC.emojiSelect = sender as! Emoji
+    
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let emojiSelect = emojisArray[indexPath.row];
+       // let emojiDescribe = emojisArrayDescription[indexPath.row];
+        performSegue(withIdentifier: "secondScreen", sender: emojiSelect)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    func makeEmojiArray() -> [Emoji] {
+        let emoji1 = Emoji()
+        emoji1.emojiString = "🤑";
+        emoji1.category = "Visage";
+        emoji1.definition = "Un boug qui aime l'oseille !!";
+        
+        let emoji2 = Emoji()
+        emoji2.emojiString = "🐶";
+        emoji2.category = "Animal";
+        emoji2.definition = "Un chien qui tire la langue !!";
+        return [emoji1,emoji2];
+    }
 
 }
 

@@ -60,7 +60,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         emoji2.emojiString = "🐶";
         emoji2.category = "Animal";
         emoji2.definition = "Un chien qui tire la langue !!";
-        return [emoji1,emoji2];
+        
+        let emoji3 = Emoji()
+        emoji3.emojiString = "🤡";
+        emoji3.category = "Clown";
+        emoji3.definition = "Freddy la terreur";
+        return [emoji1,emoji2,emoji3];
     }
 
 }

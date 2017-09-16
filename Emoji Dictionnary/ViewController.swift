@@ -21,10 +21,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tav.delegate = self;
         self.view.backgroundColor = UIColor.green
         emojisArray = makeEmojiArray();
-        self.apiRequest();
+       //emojisArray = self.apiRequest()!;
+         // print(emojisArray[0].category);
         
     }
-    func apiRequest(){
+    func apiRequest() -> [Emoji]? {
         let url = "http://localhost:8888/emoji-api/web/app_dev.php/emojis"
         
         let request = NSMutableURLRequest(url: URL(string: url)!)
@@ -39,23 +40,42 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 print("réponse = \(String(describing: response))") // On affiche dans la console si le serveur ne nous renvoit pas un code de 200 qui est le code normal
             }
             
-           // let responseAPI = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+          // let responseAPI = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
             //print("responseString = \(String(describing: responseAPI))") // Affiche dans la console la réponse de l'API
-            
-            
             if error == nil {
                 // Ce que vous voulez faire.
                 do {
                 
-                    let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)
-                    print(json)
-                    
-                } catch {
+                   // let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)
+                    if let parsedData = try JSONSerialization.jsonObject(with: data!) as? [[String:Any]]{
+                    for item in parsedData {
+                
+                            let emoji1 = Emoji()
+                            emoji1.emojiString =  "🐶";
+                            emoji1.category =  item["description"] as! String;
+                            emoji1.definition = "Un boug qui aime l'oseille !!";
+                            
+                           // let emoji2 = Emoji()
+                           // emoji2.emojiString = "🐶";
+                           // emoji2.category = "Animal";
+                            //emoji2.definition = "Un chien qui tire la langue !!";
+                            
+                           // let emoji3 = Emoji()
+                           // emoji3.emojiString = "🤡";
+                           // emoji3.category = "Clown";
+                           // emoji3.definition = "Freddy la terreur";
+                            
+                            self.emojisArray.append(emoji1)
+                        }
+                    }
+                }
+                catch {
                     print("Could not serialise")
                 }
             }
         }
         requestAPI.resume()
+        return self.emojisArray;
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

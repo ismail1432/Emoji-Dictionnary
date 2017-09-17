@@ -37,7 +37,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="BH3-hZ-c3J"/>
                     <connections>
-                        <outlet property="tav" destination="POG-47-YkW" id="jET-RO-4AO"/>
+                        <outlet property="tav" destination="POG-47-YkW" id="La1-Lg-ngj"/>
                         <segue destination="3iw-lh-kyr" kind="show" identifier="secondScreen" id="36Y-ld-8iA"/>
                     </connections>
                 </viewController>

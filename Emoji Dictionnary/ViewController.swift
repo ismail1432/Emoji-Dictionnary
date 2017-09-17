@@ -9,25 +9,26 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+    
+    
     @IBOutlet weak var tav: UITableView!
-
-    var emojisArray: [Emoji] = [];
-   
+    //Emoji array dynamically created
+    var emojisArray: [Emoji] = []
+    {
+        didSet {
+            tav.reloadData()
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         tav.dataSource = self;
         tav.delegate = self;
+        
+        //backgroundColor
         self.view.backgroundColor = UIColor.green
-        emojisArray = makeEmojiArray();
-       //emojisArray = self.apiRequest()!;
-         // print(emojisArray[0].category);
-        
-    }
-    func apiRequest() -> [Emoji]? {
+        //Url request
         let url = "http://localhost:8888/emoji-api/web/app_dev.php/emojis"
-        
         let request = NSMutableURLRequest(url: URL(string: url)!)
         request.httpMethod = "GET"
         
@@ -39,32 +40,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 print("statusCode devrait être de 200, mais il est de \(httpStatus.statusCode)")
                 print("réponse = \(String(describing: response))") // On affiche dans la console si le serveur ne nous renvoit pas un code de 200 qui est le code normal
             }
-            
-          // let responseAPI = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+            // let responseAPI = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
             //print("responseString = \(String(describing: responseAPI))") // Affiche dans la console la réponse de l'API
             if error == nil {
                 // Ce que vous voulez faire.
                 do {
-                
-                   // let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)
+                    
+                    // let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)
                     if let parsedData = try JSONSerialization.jsonObject(with: data!) as? [[String:Any]]{
-                    for item in parsedData {
-                
+                        for item in parsedData {
                             let emoji1 = Emoji()
-                            emoji1.emojiString =  "🐶";
+                            emoji1.emojiString =  "1F680";
                             emoji1.category =  item["description"] as! String;
                             emoji1.definition = "Un boug qui aime l'oseille !!";
-                            
-                           // let emoji2 = Emoji()
-                           // emoji2.emojiString = "🐶";
-                           // emoji2.category = "Animal";
-                            //emoji2.definition = "Un chien qui tire la langue !!";
-                            
-                           // let emoji3 = Emoji()
-                           // emoji3.emojiString = "🤡";
-                           // emoji3.category = "Clown";
-                           // emoji3.definition = "Freddy la terreur";
-                            
                             self.emojisArray.append(emoji1)
                         }
                     }
@@ -73,11 +61,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     print("Could not serialise")
                 }
             }
+            
         }
         requestAPI.resume()
-        return self.emojisArray;
     }
-
+   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return emojisArray.count;
     }
@@ -103,10 +91,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreate
-        
- 
-    
            }
+    /*
         func makeEmojiArray() -> [Emoji] {
         let emoji1 = Emoji()
         emoji1.emojiString = "🤑";
@@ -122,8 +108,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         emoji3.emojiString = "🤡";
         emoji3.category = "Clown";
         emoji3.definition = "Freddy la terreur";
-        return [emoji1,emoji2,emoji3];
+            
+            var arrayTest : [Emoji] = [];
+                arrayTest.append(emoji1)
+               arrayTest.append(emoji2)
+               arrayTest.append(emoji3)
+       // return [emoji1,emoji2,emoji3];
+          
+            return arrayTest
     }
+ */
 
 }
 

@@ -23,8 +23,8 @@ class SecondViewController: UIViewController {
         super.viewDidLoad()
 
         emojiToShow.text = emojiSelect.emojiString;
-        emojiDescription.text = emojiSelect.definition;
-        category.text = emojiSelect.category;
+        emojiDescription.text = emojiSelect.description;
+        category.text = emojiSelect.translate.uppercased();
     }
 
     

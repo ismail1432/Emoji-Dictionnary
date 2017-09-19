@@ -9,7 +9,6 @@
 class Emoji{
     
     var emojiString = "";
-    var definition = "";
-    var category = "";
-    var birthYear = 0;
-}
+    var description = "";
+    var translate = "";
+   }

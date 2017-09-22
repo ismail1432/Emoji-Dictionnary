@@ -13,7 +13,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var tav: UITableView!
 
-
+    var languageChoosen = "";
     var emojisArray : [Emoji] = [Emoji]()
     
     override func viewDidLoad() {
@@ -22,14 +22,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tav.dataSource = self;
         tav.delegate = self;
    
-     
-    
         //backgroundColor
         self.view.backgroundColor = UIColor(red: 187, green: 222/255, blue: 251, alpha: 1)
-        //Url request
-        let url = "http://localhost:8888/emoji-api/web/app_dev.php/emojis/arabic"
+        
+       requestApi(language: languageChoosen)
+        }
+    
+   /* func createEmojiArray() -> [Emoji] {
+     
+    }*/
+   
+    func requestApi(language: String){
+        let url = "http://localhost:8888/emoji-api/web/app_dev.php/emojis/" + language
         let request = NSMutableURLRequest(url: URL(string: url)!)
         request.httpMethod = "GET"
+        var tempArr = [Emoji]()
         
         let requestAPI = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
             if (error != nil) {
@@ -43,27 +50,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             //print("responseString = \(String(describing: responseAPI))") // Affiche dans la console la réponse de l'API
             if error == nil {
                 // Ce que vous voulez faire.
-             
                 do {
-                   
-                    // let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)
                     if let parsedData = try JSONSerialization.jsonObject(with: data!) as? [[String:Any]]{
-                        var tempArr = [Emoji]()
                         for item in parsedData {
-                   
                             let emoji = Emoji()
-                            
-                           //Transform unicode on an Emoji
+                            //Transform unicode on an Emoji
                             let strUnicodeEmoji = String(UnicodeScalar(Int(item["unicode"] as! String, radix: 16)!)!)
-                    
-                       
                             emoji.emojiString = strUnicodeEmoji as String;
-                           // emoji.description =  item["description"] as! String;
+                            // emoji.description =  item["description"] as! String;
                             emoji.translate = item["translate"] as! String;
-                        
+                            
                             //emoji.translate = item["translation"]["translation"] as! String;
                             tempArr.append(emoji)
-                            
                         }
                         DispatchQueue.main.async {
                             
@@ -74,14 +72,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     }
                 }
                 catch   {
-                        print("Could not serialise")
-                    }
+                    print("Could not serialise")
                 }
+            }
             
         }
         requestAPI.resume()
+
     }
-   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       
         return emojisArray.count;
@@ -91,7 +89,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
         let cellIdentifier = "cellIdentifierEmoji"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! EmojiZerCellTableViewCell
-        
         
         let emoji = emojisArray[indexPath.row];
         cell.cellZerLabelName?.text = emoji.emojiString;

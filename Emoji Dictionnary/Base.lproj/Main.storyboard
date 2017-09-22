@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="G51-34-vzL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vYS-Ke-F0F">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -12,7 +12,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="ViewController" customModule="Emoji_Dictionnary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="ViewController" customModule="Emoji_Dictionnary" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -65,7 +65,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="440.80000000000001" y="453.82308845577217"/>
+            <point key="canvasLocation" x="369" y="841"/>
         </scene>
         <!--Second View Controller-->
         <scene sceneID="jQX-y0-C34">
@@ -120,7 +120,71 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v78-JY-8a5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1191.2" y="453.82308845577217"/>
+            <point key="canvasLocation" x="1167" y="62"/>
+        </scene>
+        <!--Main Controller-->
+        <scene sceneID="Kne-Tv-PJK">
+            <objects>
+                <viewController id="lZK-6Y-CqJ" customClass="MainController" customModule="Emoji_Dictionnary" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QwT-Is-9ZK"/>
+                        <viewControllerLayoutGuide type="bottom" id="9Yu-jy-3C8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tWo-gR-VQF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome in da Emoji translator" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QEk-uc-Zem">
+                                <rect key="frame" x="42" y="28" width="302" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose a language" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="74f-r8-BK6">
+                                <rect key="frame" x="42" y="92" width="302" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UBW-M2-b72">
+                                <rect key="frame" x="165" y="210" width="44" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Arabic"/>
+                                <connections>
+                                    <action selector="arabicActionBtn:" destination="lZK-6Y-CqJ" eventType="touchUpInside" id="yth-el-d6b"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4eF-eO-3lV">
+                                <rect key="frame" x="163" y="256" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="French"/>
+                                <connections>
+                                    <action selector="frenchActionBtn:" destination="lZK-6Y-CqJ" eventType="touchUpInside" id="dUs-5L-9gO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3on-If-7fz">
+                                <rect key="frame" x="162" y="151" width="50" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="English"/>
+                                <connections>
+                                    <action selector="englishActionBtn:" destination="lZK-6Y-CqJ" eventType="touchUpInside" id="slD-L6-J9C"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="AMr-11-Jkw"/>
+                    <connections>
+                        <outlet property="arabicBtn" destination="UBW-M2-b72" id="ovP-x4-5L8"/>
+                        <outlet property="englishBtn" destination="3on-If-7fz" id="sKH-fu-uOD"/>
+                        <outlet property="frenchBtn" destination="4eF-eO-3lV" id="EuS-OX-jYJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RhZ-7s-XZA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-282" y="62"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="lFU-Kz-5Q0">
@@ -133,12 +197,31 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Lva-JD-Bir"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="LAy-EM-aTv"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9qi-PD-x1b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-498.39999999999998" y="453.82308845577217"/>
+            <point key="canvasLocation" x="-735" y="841"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="b4w-jC-5sK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vYS-Ke-F0F" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="vcG-bQ-dXT"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5Qz-Px-StH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="lZK-6Y-CqJ" kind="relationship" relationship="rootViewController" id="yx7-DU-OEA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I8z-YK-RKt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1652" y="62"/>
         </scene>
     </scenes>
 </document>

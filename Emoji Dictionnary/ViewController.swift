@@ -57,9 +57,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                             //Transform unicode on an Emoji
                             let strUnicodeEmoji = String(UnicodeScalar(Int(item["unicode"] as! String, radix: 16)!)!)
                             emoji.emojiString = strUnicodeEmoji as String;
-                            // emoji.description =  item["description"] as! String;
+                            emoji.description =  item["description"] as! String;
                             emoji.translate = item["translate"] as! String;
-                            
+                            emoji.language = language
                             //emoji.translate = item["translation"]["translation"] as! String;
                             tempArr.append(emoji)
                         }

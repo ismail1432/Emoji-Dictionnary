@@ -11,4 +11,5 @@ class Emoji{
     var emojiString = "";
     var description = "";
     var translate = "";
+    var language = "";
    }
